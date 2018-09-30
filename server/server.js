@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var {mongoose} = require('./db/mongoose');
-var {ObjectId} = require('mongodb');
+var {ObjectID} = require('mongodb');
 
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
@@ -41,9 +41,9 @@ app.get('/todos/:id',(req,res)=>{
 
     //VAlid id using isValid
     //404 send back empty send
-    if(!ObjectId.isValid(id))
+    if(!ObjectID.isValid(id))
     {
-        res.status(404).send('');
+        res.status(404).send();
     }
 
     //findbyID
