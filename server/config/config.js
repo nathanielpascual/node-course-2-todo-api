@@ -1,4 +1,4 @@
-var env = process.env.NODE_ENV || 'test';
+var env = process.env.NODE_ENV || 'development';
 console.log('env ********',env);
 if(env === 'development')
 {
