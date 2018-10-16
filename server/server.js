@@ -28,7 +28,6 @@ app.post('/todos',authenticate, (req, res) => {
     },(e)=>{
         res.status(400).send(e);
     });
-    //console.log(req.body);
 });
 
 app.get('/todos',authenticate, (req,res) => {
@@ -54,16 +53,12 @@ app.get('/todos/:id',authenticate,(req,res)=>{
         _id : id,
         _creator : req.user._id
     }).then((todo) => {
-        //success
-        //if todo - send it back
-        //if no todo - snd back 404 with empty back
+
         if(!todo)
              return res.status(404).send();
       
         res.send({todo});
     }).catch((e)=>{
-         //error
-        //400 - and send empty body back
         res.status(400).send();
     });
     
@@ -71,16 +66,11 @@ app.get('/todos/:id',authenticate,(req,res)=>{
 });
 
 app.delete('/todos/:id',authenticate, (req,res) => {
-
-    //get the id
     var id = req.params.id;
-    //validate the id -> validate the id? return 404
     if(!ObjectID.isValid(id))
     {
         res.status(404).send();
     }
-
-    //remove todo by id
 
     Todo.findOneAndDelete({
         _id : id,
